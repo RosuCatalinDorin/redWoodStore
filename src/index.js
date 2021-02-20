@@ -11,17 +11,18 @@ import LandingPage from "views/LandingPage/LandingPage.js";
 import ProfilePage from "views/ProfilePage/ProfilePage.js";
 import LoginPage from "views/LoginPage/LoginPage.js";
 import HomePage from "views/Home/Home.js";
+import WorkInProgress from "./views/Home/WorkInProgress";
 
 var hist = createBrowserHistory();
 
 ReactDOM.render(
   <Router history={hist}>
     <Switch>
-      <Route path="/landing-page" component={LandingPage} />
+{/*      <Route path="/landing-page" component={LandingPage} />
       <Route path="/profile-page" component={ProfilePage} />
       <Route path="/login-page" component={LoginPage} />
-      <Route path="/home" component={Components} />
-      <Route path="/" component={HomePage} />
+      <Route path="/home" component={Components} />*/}
+      <Route path="/" component={WorkInProgress} />
 
 >
     </Switch>

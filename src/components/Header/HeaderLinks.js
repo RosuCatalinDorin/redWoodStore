@@ -79,7 +79,7 @@ export default function HeaderLinks(props) {
 
     return (
     <List className={classes.list}>
-      <ListItem className={classes.listItem}>
+{/*      <ListItem className={classes.listItem}>
             <Tooltip
                 id="home"
                 title="Home"
@@ -97,7 +97,7 @@ export default function HeaderLinks(props) {
         />
             </Button>
             </Tooltip>
-        </ListItem>
+        </ListItem>*/}
       <ListItem className={classes.listItem}>
         <Tooltip
           id="instagram-facebook"
@@ -132,7 +132,7 @@ export default function HeaderLinks(props) {
           </Button>
         </Tooltip>
       </ListItem>
-        <ListItem className={classes.listItem}>
+{/*        <ListItem className={classes.listItem}>
                 <Button
                     style = {{paddingTop:"0"}}
                     color="transparent"
@@ -192,7 +192,7 @@ export default function HeaderLinks(props) {
                     </Grow>
                 )}
             </Popper>
-        </ListItem>
+        </ListItem>*/}
         {/*todo:userul nu se afiseaza ok imaginea de profil
         */}
         {/*        <ListItem className={classes.listItem}>
