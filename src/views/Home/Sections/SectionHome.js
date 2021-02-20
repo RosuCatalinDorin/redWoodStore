@@ -1,41 +1,21 @@
 import React from "react";
-// plugin that creates slider
-import Slider from "nouislider";
-// @material-ui/core components
+import {connect} from 'react-redux';
+import {addToCard} from "../../store/actions";
 import {makeStyles} from "@material-ui/core/styles";
 import Grid from '@material-ui/core/Grid';
-import InputAdornment from "@material-ui/core/InputAdornment";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Radio from "@material-ui/core/Radio";
-import Switch from "@material-ui/core/Switch";
-// @material-ui/icons
-import Favorite from "@material-ui/icons/Favorite";
-import People from "@material-ui/icons/People";
-import Check from "@material-ui/icons/Check";
-import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
-// core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Button from "components/CustomButtons/Button.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
-import CustomLinearProgress from "components/CustomLinearProgress/CustomLinearProgress.js";
-import Paginations from "components/Pagination/Pagination.js";
-import Badge from "components/Badge/Badge.js";
+
 
 import styles from "assets/jss/material-kit-react/views/componentsSections/basicsStyle.js";
 import MyCard from "../../../myComponents/Card/Card";
 
+
 const useStyles = makeStyles(styles);
 
-export default function SectionBasics() {
+const SectionBasics = ({cart,onAdToCart}) => {
     const classes = useStyles();
     const [checked, setChecked] = React.useState([24, 22]);
-    const [selectedEnabled, setSelectedEnabled] = React.useState("b");
-    const [checkedA, setCheckedA] = React.useState(true);
-    const [checkedB, setCheckedB] = React.useState(false);
-    React.useEffect(() => {
 
+    React.useEffect(() => {
         return function cleanup() {
         };
     });
@@ -53,11 +33,11 @@ export default function SectionBasics() {
 
     const products = [
         {
-        title: "Tavita cafea",
-        description: "Tavita cafea personalzata bla bla bla bbla bla bla bla bla",
-        id: "22",
-        img: "https://firebasestorage.googleapis.com/v0/b/redwoodstore-1613483240446.appspot.com/o/tavaCafea.jpeg?alt=media&token=ca99a697-aa77-43bf-8600-2391a1a332ff"
-    },
+            title: "Tavita cafea",
+            description: "Tavita cafea personalzata bla bla bla bbla bla bla bla bla",
+            id: "22",
+            img: "https://firebasestorage.googleapis.com/v0/b/redwoodstore-1613483240446.appspot.com/o/tavaCafea.jpeg?alt=media&token=ca99a697-aa77-43bf-8600-2391a1a332ff"
+        },
         {
             title: "Litere de lemn ",
             description: "Litere de lemn de fag bbla bla bla bla bla bbla bla bla bla bla ",
@@ -119,6 +99,9 @@ export default function SectionBasics() {
             img: "https://firebasestorage.googleapis.com/v0/b/redwoodstore-1613483240446.appspot.com/o/WhatsApp%20Image%202021-02-02%20at%2013.06.20.jpg?alt=media&token=2bbc3573-921f-4c01-b848-3cdbffa01e6d"
         }
     ];
+    const addToCart = () => {
+        this.props.addToCart(2)
+    }
     return (
         <div className={classes.sections}>
             <div className={classes.container}>
@@ -141,3 +124,11 @@ export default function SectionBasics() {
         </div>
     );
 }
+const mapStateToProps = (state) => ({
+    cart: state.cart
+})
+const mapDispatchToProps = (dispatch) => ({
+    onAdToCart: id => dispatch(addToCard(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SectionBasics)

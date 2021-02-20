@@ -24,9 +24,12 @@ import {Button} from "@material-ui/core";
 
 const useStyles = makeStyles(styles);
 
+
 export default function Components(props) {
     const classes = useStyles();
     const {...rest} = props;
+
+
     return (
         <div>
             <Header
@@ -50,7 +53,8 @@ export default function Components(props) {
                                     Cele mai placute momente de relaxare sunt cele petrecute chiar in confortul casei tale.
                                 </h3>
                                 <Button className={classes.homeButton}
-                                        variant="contained">
+                                        variant="contained"
+                                >
                                     Default</Button>
                             </div>
                         </GridItem>

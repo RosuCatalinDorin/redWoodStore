@@ -21,7 +21,10 @@ const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 345,
         marginLeft:30,
-        marginTop:30
+        marginTop:30,
+        ['@media (max-width:980px)']: {
+            marginLeft:0,
+        }
     },
     media: {
         height: 0,
@@ -51,6 +54,7 @@ export default function RecipeReviewCard(props) {
     };
 
     return (
+
         <Card className={classes.root}>
 
             <CardMedia
@@ -85,7 +89,6 @@ export default function RecipeReviewCard(props) {
                     className={clsx(classes.expand, {
                         [classes.expandOpen]: expanded,
                     })}
-                    onClick={handleExpandClick}
                     aria-expanded={expanded}
                     aria-label="show more"
                 >
