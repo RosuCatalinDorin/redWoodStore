@@ -24,9 +24,9 @@ const SectionBasics = ({cart, onAdToCart}) => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const {data} = await axios.get('/api/products');
+                const {data} = await axios.get('/getProducts');
                 setLoading(false);
-                setProducts(data);
+                setProducts(data.products);
             } catch (err) {
                 setError(err.message);
                 setLoading(false);

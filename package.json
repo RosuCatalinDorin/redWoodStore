@@ -1,6 +1,6 @@
 {
   "name": "material-kit-react",
-  "proxy": "http://127.0.0.1:5000",
+  "proxy": "https://confident-brattain-b961d6.netlify.app/.netlify/functions/api",
   "type": "module",
   "version": "1.9.0",
   "description": "Material Kit React. Coded by Creative Tim",
@@ -49,7 +49,7 @@
   },
   "scripts": {
     "start": "react-scripts start && node ./backend/server.js",
-    "build": "react-scripts build && gulp licenses",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint:check": "eslint . --ext=js,jsx;  exit 0",
