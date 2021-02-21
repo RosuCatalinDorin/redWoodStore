@@ -1,5 +1,7 @@
 {
   "name": "material-kit-react",
+  "proxy": "http://127.0.0.1:5000",
+  "type": "module",
   "version": "1.9.0",
   "description": "Material Kit React. Coded by Creative Tim",
   "private": true,
@@ -7,7 +9,10 @@
   "dependencies": {
     "@material-ui/core": "4.10.0",
     "@material-ui/icons": "4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.57",
+    "axios": "^0.21.1",
     "classnames": "2.2.6",
+    "express": "^4.17.1",
     "history": "4.10.1",
     "moment": "2.26.0",
     "node-sass": "4.14.1",
@@ -35,6 +40,7 @@
     "eslint-plugin-react": "7.20.0",
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.8",
+    "nodemon": "^2.0.7",
     "prettier": "2.0.5",
     "react-redux": "^7.2.2"
   },

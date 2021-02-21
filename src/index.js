@@ -12,15 +12,16 @@ import ProfilePage from "views/ProfilePage/ProfilePage.js";
 import LoginPage from "views/LoginPage/LoginPage.js";
 import HomePage from "views/Home/Home.js";
 import Home2 from "views/Home/Home2"
+import store from "./store/store";
 // redux
-import {configureStore} from "store/store.js";
+
 
 
 
 var hist = createBrowserHistory();
 
 ReactDOM.render(
- <Provider store={configureStore()}>
+ <Provider store={store}>
   <Router history={hist}>
     <Switch>
       <Route path="/landing-page" component={LandingPage} />
