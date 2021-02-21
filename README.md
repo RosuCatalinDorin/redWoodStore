@@ -1,6 +1,5 @@
 ## Prod API Config 
-
-    "proxy": "https://confident-brattain-b961d6.netlify.app/.netlify/functions/api",
+    diret pe orid fara proxy
     "start": "react-scripts start",
   
 ##Test  api config  
