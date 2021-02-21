@@ -24,7 +24,7 @@ const SectionBasics = ({cart, onAdToCart}) => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const {data} = await axios.get('https://confident-brattain-b961d6.netlify.app/.netlify/functions/api/getProducts');
+                const {data} = await axios.get('/api/getProducts');
                 setLoading(false);
                 setProducts(data.products);
             } catch (err) {
