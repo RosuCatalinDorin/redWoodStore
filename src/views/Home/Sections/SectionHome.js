@@ -24,7 +24,7 @@ const SectionBasics = ({cart, onAdToCart}) => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const {data} = await axios.get('/getProducts');
+                const {data} = await axios.get('/.netlify/functions/api/getProducts');
                 setLoading(false);
                 setProducts(data.products);
             } catch (err) {
