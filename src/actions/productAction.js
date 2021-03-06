@@ -28,8 +28,8 @@ export const detailsProduct =(productId) => async (dispatch) =>{
 
         firebase.collection('products')
             .doc(productId).get().then(doc =>{
-                debugger;
                 const data = doc.data();
+                       data.id = productId;
             console.log(data);
             dispatch({type:PRODUCT_DETAILS_SUCCESS,payload:data})
         })
