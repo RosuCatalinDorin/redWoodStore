@@ -85,7 +85,7 @@ export default function ProductDetails(props) {
                                             <div className={classes.container}>
                                                 <h3 className={classes.title}
                                                     style={{marginTop: "20px"}}>{product.title}</h3>
-                                                <h4 style={{marginTop: "5px"}}>{product.pret + " RON"}</h4>
+                                                <h4 style={{marginTop: "5px"}}>{product.pret + " Lei"}</h4>
                                             </div>
                                             <div>
                                                 <SectionTabs data={product}/>

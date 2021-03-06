@@ -1,30 +1,13 @@
 /*eslint-disable*/
 import React from "react";
-import DeleteIcon from "@material-ui/icons/Delete";
-import IconButton from "@material-ui/core/IconButton";
-// react components for routing our app without refresh
-import { Link } from "react-router-dom";
-
+import { useHistory } from "react-router-dom";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Tooltip from "@material-ui/core/Tooltip";
 
-// @material-ui/icons
-import { Apps, CloudDownload } from "@material-ui/icons";
-
-// core components
-import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
 import Button from "components/CustomButtons/Button.js";
-import {
-    primaryColor,
-    warningColor,
-    dangerColor,
-    successColor,
-    infoColor,
-    roseColor
-} from "assets/jss/material-kit-react.js";
 
 import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js";
 import HomeIcon from '@material-ui/icons/Home';
@@ -41,6 +24,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import User from "../../assets/img/myImg/home/user.png"
 import {useSelector} from "react-redux";
 import Avatar from '@material-ui/core/Avatar';
+import Favorite from "@material-ui/icons/Favorite";
+import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 const useStyles = makeStyles(styles);
 
 export default function HeaderLinks(props) {
@@ -48,6 +33,7 @@ export default function HeaderLinks(props) {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const anchorRefLove = React.useRef(null);
+    const history = useHistory();
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
@@ -66,7 +52,9 @@ export default function HeaderLinks(props) {
             setOpen(false);
         }
     }
-
+   const placeOrder = ()=> {
+       history.push("/finalizeazComanda");
+    }
     // return focus to the button when we transitioned from !open -> open
     const prevOpen = React.useRef(open);
     React.useEffect(() => {
@@ -181,7 +169,7 @@ export default function HeaderLinks(props) {
                         {...TransitionProps}
                         style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
                     >
-                        <Paper>
+                        <Paper style={{        minWidth: 280}}>
                             <ClickAwayListener onClickAway={handleClose}>
                                 <MenuList autoFocusItem={open} id="lista-cos-cumparaturi" onKeyDown={handleListKeyDown}>
                                     {cartItems.map(row=>(
@@ -193,20 +181,17 @@ export default function HeaderLinks(props) {
                                              <p> {"x"+row.qty+ " "} <b color="primary">{ row.product.pret * row.qty + " Lei"}</b> </p>
                                          </div>
                                         </ListItemIcon>
-
-                            {/*            <div style={{marginLeft:"15px"}}>
-                                            <Fab size="small" color="success" aria-label="add" className={classes.margin}>
-                                                <AddIcon />
-                                            </Fab>
-                                            <Button>{row.qty}</Button>
-                                            <Fab size="small" color="secondary" aria-label="add" className={classes.margin}>
-                                                <AddIcon />
-                                            </Fab>
-                                        </div>*/}
                                         </MenuItem>
-
-
                                     ))}
+                                    {
+                                        cartItems.length > 0 ?
+                                            <Button onClick ={placeOrder} style ={{marginLeft:"14%"}} color="success" round>
+                                                <DoneOutlineIcon className={classes.icons} /> Finalizeaza comanda
+                                            </Button> :
+                                            ""
+                                    }
+
+
 
 
                                 </MenuList>

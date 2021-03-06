@@ -11,6 +11,7 @@ import LandingPage from "views/LandingPage/LandingPage.js";
 import ProductPage from "views/ProductPage/ProductPage";
 import LoginPage from "views/LoginPage/LoginPage.js";
 import HomePage from "views/Home/Home.js";
+import OrderPage from "./views/Order/OrderPage";
 import store from "./store/store";
 // redux
 
@@ -29,6 +30,7 @@ ReactDOM.render(
       />
       <Route path="/login-page" component={LoginPage} />
       <Route path="/home" component={Components} />
+      <Route path="/finalizeazComanda" component={OrderPage} />
       <Route path="/" component={HomePage} />
 >
     </Switch>

@@ -77,7 +77,7 @@ export default function RecipeReviewCard(props) {
                     </IconButton>
                 }
                 title={data.title}
-                subheader={ data.pret + " RON"}
+                subheader={ data.pret + " Lei"}
             />
             <CardContent>
 
