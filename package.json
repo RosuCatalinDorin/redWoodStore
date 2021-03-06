@@ -1,6 +1,6 @@
 {
   "name": "material-kit-react",
-  "proxy": "http://localhost:5000",
+  "proxy": "http://localhost:81/RED_WOOD_API/public/",
   "type": "module",
   "version": "1.9.0",
   "description": "Material Kit React. Coded by Creative Tim",
@@ -13,6 +13,7 @@
     "axios": "^0.21.1",
     "classnames": "2.2.6",
     "express": "^4.17.1",
+    "firebase": "^8.2.10",
     "history": "4.10.1",
     "moment": "2.26.0",
     "node-sass": "4.14.1",

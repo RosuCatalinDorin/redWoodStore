@@ -8,7 +8,7 @@ const data = {
         },
         {
             title: "Litere de lemn ",
-            description: "Litere de lemn de fag bbla bla bla bla bla bbla bla bla bla bla ",
+            description: "Litere de lemn masiv pe diferite dimensiuni ",
             id: "22",
             img: "https://firebasestorage.googleapis.com/v0/b/redwoodstore-1613483240446.appspot.com/o/WhatsApp%20Image%202021-02-06%20at%2019.58.08.jpeg?alt=media&token=1d74f2a9-742d-4771-b8b5-1634c2dc35ef"
         },

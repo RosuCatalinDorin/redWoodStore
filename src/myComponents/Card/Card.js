@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -20,6 +21,7 @@ import Button from "@material-ui/core/Button";
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 345,
+        minWidth: 345,
         marginLeft:30,
         marginTop:30,
         ['@media (max-width:980px)']: {
@@ -49,10 +51,15 @@ export default function RecipeReviewCard(props) {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
     const {data} = props;
+    const history = useHistory();
+    debugger;
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
-
+    const openProductDetails = (data) =>{
+        let id = data.replace(/ /g,"_");
+        history.push("/product-page/"+id);
+    };
     return (
 
         <Card className={classes.root}>
@@ -70,21 +77,15 @@ export default function RecipeReviewCard(props) {
                     </IconButton>
                 }
                 title={data.title}
-                subheader="200 RON"
+                subheader={ data.pret + " RON"}
             />
             <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    {data.description}
-                </Typography>
+
             </CardContent>
             <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                </IconButton>
-                <IconButton aria-label="share">
-                    <ShareIcon />
-                </IconButton>
-                <Button size="small">Vezi detalii</Button>
+                <Button
+                    onClick={() => {openProductDetails(data.description+'_'+data.id)}}
+                    size="small">Vezi detalii</Button>
                 <IconButton
                     className={clsx(classes.expand, {
                         [classes.expandOpen]: expanded,

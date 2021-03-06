@@ -8,15 +8,11 @@ import "assets/scss/material-kit-react.scss?v=1.9.0";
 // pages for this product
 import Components from "views/Components/Components.js";
 import LandingPage from "views/LandingPage/LandingPage.js";
-import ProfilePage from "views/ProfilePage/ProfilePage.js";
+import ProductPage from "views/ProductPage/ProductPage";
 import LoginPage from "views/LoginPage/LoginPage.js";
 import HomePage from "views/Home/Home.js";
-import Home2 from "views/Home/Home2"
 import store from "./store/store";
 // redux
-
-
-
 
 var hist = createBrowserHistory();
 
@@ -24,12 +20,16 @@ ReactDOM.render(
  <Provider store={store}>
   <Router history={hist}>
     <Switch>
-      <Route path="/landing-page" component={LandingPage} />
-      <Route path="/profile-page" component={ProfilePage} />
+      <Route path="/landing-page" component={LandingPage}/>
+
+{/*      <Route path="/product-page/:id" component={ProductPage} />*/}
+      <Route path="/product-page/:id" render={(props) =>(
+          <ProductPage {...props} />
+      )}
+      />
       <Route path="/login-page" component={LoginPage} />
       <Route path="/home" component={Components} />
-      <Route path="/" component={Home2} />
-
+      <Route path="/" component={HomePage} />
 >
     </Switch>
   </Router>

@@ -6,7 +6,6 @@ const typographyStyle = {
   section: {
     padding: "70px 0"
   },
-  container,
   space50: {
     height: "50px",
     display: "block"
@@ -18,7 +17,6 @@ const typographyStyle = {
     textDecoration: "none"
   },
   typo: {
-    paddingLeft: "25%",
     marginBottom: "40px",
     position: "relative",
     width: "100%"

@@ -12,10 +12,12 @@ const StyledBadge = withStyles((theme) => ({
     },
 }))(Badge);
 
-export default function ShopBadges() {
+export default function ShopBadges(props) {
+    debugger;
+    const totalItems = props.items.length;
     return (
         <IconButton aria-label="cart">
-            <StyledBadge badgeContent={4} color="secondary">
+            <StyledBadge badgeContent={totalItems} color="secondary">
                 <ShoppingCartIcon />
             </StyledBadge>
         </IconButton>

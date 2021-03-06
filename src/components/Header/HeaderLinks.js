@@ -29,17 +29,18 @@ import {
 import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js";
 import HomeIcon from '@material-ui/icons/Home';
 import Email from "@material-ui/icons/Email";
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import SendIcon from '@material-ui/icons/Send';
 import ShopBadges from "../../myComponents/Card/ShopBadges";
-import LoveBadges from "../../myComponents/Card/LoveBadges";
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Popper from "@material-ui/core/Popper";
 import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import MenuList from "@material-ui/core/MenuList";
 import MenuItem from "@material-ui/core/MenuItem";
-
-
+import User from "../../assets/img/myImg/home/user.png"
+import {useSelector} from "react-redux";
+import Avatar from '@material-ui/core/Avatar';
 const useStyles = makeStyles(styles);
 
 export default function HeaderLinks(props) {
@@ -47,7 +48,6 @@ export default function HeaderLinks(props) {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const anchorRefLove = React.useRef(null);
-
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
@@ -76,7 +76,8 @@ export default function HeaderLinks(props) {
 
         prevOpen.current = open;
     }, [open]);
-
+    const cart = useSelector (state =>state.cart)
+    const {cartItems} = cart;
     return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
@@ -132,7 +133,7 @@ export default function HeaderLinks(props) {
           </Button>
         </Tooltip>
       </ListItem>
-        <ListItem className={classes.listItem}>
+{/*        <ListItem className={classes.listItem}>
                 <Button
                     style = {{paddingTop:"0"}}
                     color="transparent"
@@ -160,7 +161,7 @@ export default function HeaderLinks(props) {
                     </Grow>
                 )}
             </Popper>
-        </ListItem>
+        </ListItem>*/}
         <ListItem className={classes.listItem}>
 
             <Button
@@ -172,7 +173,7 @@ export default function HeaderLinks(props) {
                 aria-haspopup="true"
                 onClick={handleToggle}
             >
-                <ShopBadges/>
+                <ShopBadges items={cartItems} />
             </Button>
             <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                 {({ TransitionProps, placement }) => (
@@ -183,9 +184,31 @@ export default function HeaderLinks(props) {
                         <Paper>
                             <ClickAwayListener onClickAway={handleClose}>
                                 <MenuList autoFocusItem={open} id="lista-cos-cumparaturi" onKeyDown={handleListKeyDown}>
-                                    <MenuItem onClick={handleClose}>Tavita lemn</MenuItem>
-                                    <MenuItem onClick={handleClose}>Litere de lemn</MenuItem>
-                                    <MenuItem onClick={handleClose}>Decoratiuni</MenuItem>
+                                    {cartItems.map(row=>(
+                                        <MenuItem>
+                                        <ListItemIcon>
+                                         <Avatar alt="Product" src={row.product.img} />
+                                         <div style={{marginLeft:"10px"}}>
+                                             <p>{row.product.title}</p>
+                                             <p> {"x"+row.qty+ " "} <b color="primary">{ row.product.pret * row.qty + " Lei"}</b> </p>
+                                         </div>
+                                        </ListItemIcon>
+
+                            {/*            <div style={{marginLeft:"15px"}}>
+                                            <Fab size="small" color="success" aria-label="add" className={classes.margin}>
+                                                <AddIcon />
+                                            </Fab>
+                                            <Button>{row.qty}</Button>
+                                            <Fab size="small" color="secondary" aria-label="add" className={classes.margin}>
+                                                <AddIcon />
+                                            </Fab>
+                                        </div>*/}
+                                        </MenuItem>
+
+
+                                    ))}
+
+
                                 </MenuList>
                             </ClickAwayListener>
                         </Paper>
@@ -195,7 +218,7 @@ export default function HeaderLinks(props) {
         </ListItem>
         {/*todo:userul nu se afiseaza ok imaginea de profil
         */}
-        {/*        <ListItem className={classes.listItem}>
+              {/*  <ListItem className={classes.listItem}>
             <CustomDropdown
                 left
                 caret={false}
@@ -203,7 +226,7 @@ export default function HeaderLinks(props) {
                 dropdownHeader="Dropdown Header"
                 buttonText={
                     <img
-                        src={profileImage}
+                        src={User}
                         className={classes.img}
                         alt="profile"
                     />

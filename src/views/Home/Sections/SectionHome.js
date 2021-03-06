@@ -9,32 +9,21 @@ import MyCard from "../../../myComponents/Card/Card";
 import axios from "axios";
 import LoadingBox from '../../../myComponents/Loading'
 import AlertComponent from "../../../myComponents/Alert";
+import {useDispatch, useSelector} from "react-redux";
+import {listProducts} from "../../../actions/productAction";
 
 
 const useStyles = makeStyles(styles);
 
 const SectionBasics = ({cart, onAdToCart}) => {
     const classes = useStyles();
+    const dispatch = useDispatch();
     const [checked, setChecked] = React.useState([24, 22]);
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
-
+    const productsList = useSelector(state=>state.productList);
+    const {loading,error,products} = productsList;
     React.useEffect(() => {
-        const fetchData = async () => {
-            try {
-                setLoading(true);
-                const {data} = await axios.get('/api/getProducts');
-                setLoading(false);
-                setProducts(data.products);
-            } catch (err) {
-                setError(err.message);
-                setLoading(false);
-            }
-
-        }
-        fetchData();
-    }, []);
+            dispatch(listProducts())
+    }, [dispatch]);
     const handleToggle = value => {
         const currentIndex = checked.indexOf(value);
         const newChecked = [...checked];
@@ -47,9 +36,7 @@ const SectionBasics = ({cart, onAdToCart}) => {
         setChecked(newChecked);
     };
 
-    const addToCart = () => {
-        this.props.addToCart(2)
-    }
+
 
     return (
         <div className={classes.sections}>
@@ -67,6 +54,7 @@ const SectionBasics = ({cart, onAdToCart}) => {
                         >
                             {products.map((row) => (
                                 <MyCard
+                                    key ={row.id.toString()}
                                     data={row}
                                 />
                             ))}
