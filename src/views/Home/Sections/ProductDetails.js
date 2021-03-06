@@ -61,7 +61,6 @@ export default function ProductDetails(props) {
             : []
 
         cartItems.forEach(row => {
-            debugger;
             if (row.product.id === product.id) {
                 qty = row.qty;
             }
