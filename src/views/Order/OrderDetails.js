@@ -49,13 +49,13 @@ export default function InteractiveList() {
     const cart = useSelector(state => state.cart)
     const {cartItems}  =  cart;
     let totalPrice = 0
-    let shippingCost = 14.59;
+    let shippingCost
     cartItems.forEach(row =>(
         totalPrice += row.qty * row.product.pret
-    ))
+    ));
+    totalPrice > 300 ? shippingCost = 0 : shippingCost=14.59;
     console.log(totalPrice);
     const removeItemToCart  = (id) => {
-        debugger;
         dispatch(removeFromCart(id))
     }
     console.log(cartItems);
@@ -83,9 +83,11 @@ export default function InteractiveList() {
                                     </ListItemSecondaryAction>
                                 </ListItem>
                             ))}
-                            <h5>Cost produse: {totalPrice +" Lei"}</h5>
-                            <h5>Cost livrare si procesare: {shippingCost +" Lei"}</h5>
-                            <h4>Subtotal: {totalPrice+shippingCost +" Lei"}</h4>
+                            <div style={{marginLeft:'20px'}}>
+                                <h5>Cost produse: {totalPrice +" Lei"}</h5>
+                                <h5>Cost livrare si procesare: {shippingCost +" Lei"}</h5>
+                                <h4>Subtotal: {totalPrice+shippingCost +" Lei"}</h4>
+                            </div>
                         </List>
                     </div>
                 </Grid>

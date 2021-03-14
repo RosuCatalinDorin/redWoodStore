@@ -1,116 +1,127 @@
-import React from "react";
+import React, {useState} from "react";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles";
 
 
 import styles from "assets/jss/material-kit-react/components/customInputStyle.js";
-import CustomInput from "../../components/CustomInput/CustomInput";
 import GridContainer from "../../components/Grid/GridContainer.js";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import People from "@material-ui/icons/People";
-import Email from "@material-ui/icons/Email";
-import Icon from "@material-ui/core/Icon";
-import CardBody from "../../components/Card/CardBody";
 import GridItem from "../../components/Grid/GridItem";
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from "@material-ui/core/TextField";
+import judete from "../../data/Judete";
+import * as Axios from "axios";
+import {Grid} from "@material-ui/core";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import {useDispatch, useSelector} from "react-redux";
+import {addToOrder} from "../../actions/orderAction";
 
 const useStyles = makeStyles(styles);
 
 export default function OrderForm(props) {
     const classes = useStyles();
-    const {
-        formControlProps,
-        labelText,
-        id,
-        labelProps,
-        inputProps,
-        error,
-        white,
-        inputRootCustomClasses,
-        success
-    } = props;
-
-    const labelClasses = classNames({
-        [" " + classes.labelRootError]: error,
-        [" " + classes.labelRootSuccess]: success && !error
-    });
-    const underlineClasses = classNames({
-        [classes.underlineError]: error,
-        [classes.underlineSuccess]: success && !error,
-        [classes.underline]: true,
-        [classes.whiteUnderline]: white
-    });
-    const marginTop = classNames({
-        [inputRootCustomClasses]: inputRootCustomClasses !== undefined
-    });
-    const inputClasses = classNames({
-        [classes.input]: true,
-        [classes.whiteInput]: white
-    });
-    var formControlClasses;
-    if (formControlProps !== undefined) {
-        formControlClasses = classNames(
-            formControlProps.className,
-            classes.formControl
-        );
-    } else {
-        formControlClasses = classes.formControl;
+    const [orase, setOrase] = useState([]);
+    const [antoine, setAntoine] = useState(false);
+    const [obj, setObj] = useState({});
+    const [disableItemOrase, setDisableItemOrase] = useState(true);
+    const dispatch = useDispatch();
+    const order = useSelector(state => state.order);
+    console.log(order);
+    const getCity = async (value) => {
+        const oraseJudet = await Axios.get('https://roloca.coldfuse.io/orase/' + value.auto);
+        setOrase(oraseJudet.data);
+        setDisableItemOrase(false);
+        order.judet = value.nume;
+        dispatch(addToOrder(order));
+    }
+    const handlerChangeCity = (value) =>{
+        order.localitate = value.nume
+        dispatch(addToOrder(order));
+    }
+    const handleChangeCheckbox = (event) => {
+        setAntoine(event.target.checked);
+        order.gdpr = event.target.checked
+        dispatch(addToOrder(order));
+    };
+    const handlerChange = (e) => {
+        const {id, value} = e.target;
+        order[id] = value;
+        setObj({
+            ...obj,
+            [id]: value
+        })
+        dispatch(addToOrder(order));
     }
     return (
         <div className={classes.container}>
-            <GridContainer style ={{display:"flex",justifyContent:"center"}}>
+            <GridContainer style={{display: "flex", justifyContent: "center"}}>
                 <GridItem md={10}>
-            <CustomInput
-                labelText="First Name..."
-                id="first"
-                formControlProps={{
-                    fullWidth: true
-                }}
-                inputProps={{
-                    type: "text",
-                    endAdornment: (
-                        <InputAdornment position="end">
-                            <People className={classes.inputIconsColor} />
-                        </InputAdornment>
-                    )
-                }}
-            />
-            <CustomInput
-                labelText="Email..."
-                id="email"
-                formControlProps={{
-                    fullWidth: true
-                }}
-                inputProps={{
-                    type: "email",
-                    endAdornment: (
-                        <InputAdornment position="end">
-                            <Email className={classes.inputIconsColor} />
-                        </InputAdornment>
-                    )
-                }}
-            />
-            <CustomInput
-                labelText="Password"
-                id="pass"
-                formControlProps={{
-                    fullWidth: true
-                }}
-                inputProps={{
-                    type: "password",
-                    endAdornment: (
-                        <InputAdornment position="end">
-                            <Icon className={classes.inputIconsColor}>
-                                lock_outline
-                            </Icon>
-                        </InputAdornment>
-                    ),
-                    autoComplete: "off"
-                }}
-            />
+                    <Grid container>
+                        <Grid item xs={12} sm={4}>
+                            <TextField style={{padding: "5px", width: "100%"}} id="name" label="Nume"
+                                       onChange={handlerChange}/>
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                            <TextField style={{padding: "5px", width: "100%"}} id="penume" label="Prenume"
+                                       onChange={handlerChange}/>
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                            <TextField style={{padding: "5px", width: "100%"}} id="telefon" label="Telefon"
+                                       onChange={handlerChange}/>
+                        </Grid>
+                        <Grid item xs={12} sm={12}>
+                            <TextField style={{padding: "5px", width: "100%"}} id="email" label="Email"
+                                       onChange={handlerChange}/>
+                        </Grid>
+                    </Grid>
+                    <Autocomplete
+                        style={{marginTop: "20px"}}
+                        id="combo-box-demo"
+                        options={judete}
+                        getOptionLabel={(option) => option.nume}
+                        renderInput={(params) => <TextField {...params} label="Selecteaza judetul" variant="outlined"/>}
+                        //     getOptionSelected={(option) =>{getCity(option.auto)}}
+                        onChange={(event, value) => getCity(value)}
+                    />
+                    <Autocomplete
+                        style={{marginTop: "20px"}}
+                        id="orase"
+                        disabled ={disableItemOrase}
+                        options={orase}
+                        getOptionLabel={(option) => option.nume}
+                        onChange={(event, value) => handlerChangeCity(value)}
+                        renderInput={(params) => <TextField {...params} label="Selecteaza Localitate"
+                                                            variant="outlined"/>}
+                    />
+                    <Grid container>
+                        <Grid item xs={12} sm={4}>
+                            <TextField style={{padding: "5px", width: "100%"}} id="strada" label="Strada"
+                                       onChange={handlerChange}/>
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                            <TextField style={{padding: "5px", width: "100%"}} id="numar" label="Numar"
+                                       onChange={handlerChange}/>
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                            <TextField style={{padding: "5px", width: "100%"}} id="codPostal" label="Cod postal"
+                                       onChange={handlerChange}/>
+                        </Grid>
+                        <Grid item xs={12} sm={12}>
+                            <TextField style={{padding: "5px", width: "100%"}} id="deliveryDetails"
+                                       label="Detalii suplimentare pentru livrare"
+                                       onChange={handlerChange}/>
+                        </Grid>
+
+                        <FormControlLabel
+                            control={<Checkbox checked={antoine} id="antoine" onChange={handleChangeCheckbox}
+                                               name="antoine"/>}
+                            label="Imi exprima acordul pentru prelucrarea datelor cu caracter personal"
+                        />
+                    </Grid>
                 </GridItem>
             </GridContainer>
         </div>

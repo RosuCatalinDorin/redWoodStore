@@ -67,11 +67,7 @@ export default function LoginPage(props) {
                                     <CardBody>
 
                                     </CardBody>
-                                    <CardFooter className={classes.cardFooter}>
-                                        <Button simple color="primary" size="lg">
-                                            Get started
-                                        </Button>
-                                    </CardFooter>
+
                                 </form>
                             </Card>
                         </GridItem>

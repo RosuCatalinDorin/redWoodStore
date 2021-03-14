@@ -1,23 +1,16 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
+
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
 import Button from "@material-ui/core/Button";
+
+
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 345,
@@ -71,11 +64,6 @@ export default function RecipeReviewCard(props) {
             />
             <CardHeader
 
-                action={
-                    <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                    </IconButton>
-                }
                 title={data.title}
                 subheader={ data.pret + " Lei"}
             />
@@ -84,17 +72,11 @@ export default function RecipeReviewCard(props) {
             </CardContent>
             <CardActions disableSpacing>
                 <Button
+                    color="primary"
                     onClick={() => {openProductDetails(data.description+'_'+data.id)}}
-                    size="small">Vezi detalii</Button>
-                <IconButton
-                    className={clsx(classes.expand, {
-                        [classes.expandOpen]: expanded,
-                    })}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                >
-                    <AddShoppingCartIcon  />
-                </IconButton>
+                    size="small">Vezi detalii
+                </Button>
+
             </CardActions>
         </Card>
     );
