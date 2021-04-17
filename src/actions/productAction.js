@@ -6,13 +6,13 @@ import {
     PRODUCT_LIST_REQUEST,
     PRODUCT_LIST_SUCCESS
 } from "../constants/productConstants";
-import firebase from "../firebase/FireBase";
+import {firebase_con,analytics} from "../firebase/FireBase";
 export const listProducts = () => async (dispatch) => {
     dispatch({
         type: PRODUCT_LIST_REQUEST
     })
     try {
-           firebase.collection('products').get().then( doc => {
+        firebase_con.collection('products').get().then( doc => {
                const data = doc.docs.map((doc) => ({id: doc.id, ...doc.data()}))
                dispatch({type: PRODUCT_LIST_SUCCESS, payload: data})
            })
@@ -25,7 +25,7 @@ export const detailsProduct =(productId) => async (dispatch) =>{
     try {
        // const {data} =await axios.get(`/web/getProductById/${productId}`)
 
-        firebase.collection('products')
+        firebase_con.collection('products')
             .doc(productId).get().then(doc =>{
                 const data = doc.data();
                        data.id = productId;

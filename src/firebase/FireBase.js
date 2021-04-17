@@ -10,6 +10,6 @@ const firebaseApp = firebase.initializeApp({
     measurementId: "G-FBNL037NS9"
 });
 
-const db = firebaseApp.firestore();
+export const firebase_con = firebaseApp.firestore();
+export const analytics = firebase.analytics()
 
-export default db
