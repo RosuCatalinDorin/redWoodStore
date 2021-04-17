@@ -71,7 +71,8 @@ export default function OrderForm(props) {
         <div className={classes.container}>
             <GridContainer style={{display: "flex", justifyContent: "center"}}>
                 <GridItem md={10}>
-                    <Grid container>
+                    <Grid container style={{marginLeft:"10px",marginRight:"10px"}}>
+
                         <Grid item xs={12} sm={4}>
                             <TextField style={{padding: "5px", width: "100%"}} id="name" label="Nume" value ={order.name}
                                        onChange={handlerChange}/>
@@ -89,8 +90,8 @@ export default function OrderForm(props) {
                                        onChange={handlerChange}/>
                         </Grid>
                     </Grid>
-                    <Autocomplete
-                        style={{marginTop: "20px"}}
+                    <Autocomplete xs={12} sm={4}
+                        style={{marginTop: "20px",marginLeft:"10px"}}
                         id="combo-box-demo"
                         options={judete}
                         getOptionLabel={(option) => option.nume}
@@ -98,9 +99,11 @@ export default function OrderForm(props) {
                         //     getOptionSelected={(option) =>{getCity(option.auto)}}
                         onChange={(event, value) => getCity(value)}
                         value={order.judet}
+
                     />
                     <Autocomplete
-                        style={{marginTop: "20px"}}
+                        xs={12} sm={4}
+                        style={{marginTop: "20px",marginLeft:"10px"}}
                         id="orase"
                         disabled ={disableItemOrase}
                         options={orase}
@@ -110,7 +113,7 @@ export default function OrderForm(props) {
                         value={order.orase}
                                                             variant="outlined"/>}
                     />
-                    <Grid container>
+                    <Grid container style={{marginLeft:"10px",marginRight:"10px"}}>
                         <Grid item xs={12} sm={4}>
                             <TextField style={{padding: "5px", width: "100%"}} id="strada" label="Strada" value={order.strada}
                                        onChange={handlerChange}/>
