@@ -9,7 +9,7 @@ const firebaseApp = firebase.initializeApp({
     appId: "1:1028142092602:web:1243bc53ab388b90a9c003",
     measurementId: "G-FBNL037NS9"
 });
-
+const perf = firebase.performance();
 export const firebase_con = firebaseApp.firestore();
 export const analytics = firebase.analytics()
 
