@@ -82,7 +82,7 @@ export default function HeaderLinks(props) {
 
             >
         <HomeIcon
-            style={{ fontSize: 79 }}
+            fontSize="large"
         />
             </Button>
             </Tooltip>
@@ -151,9 +151,14 @@ export default function HeaderLinks(props) {
             </Popper>
         </ListItem>*/}
         <ListItem className={classes.listItem}>
-
+            <Tooltip
+                id="cart"
+                title="Cos de cumparaturi"
+                placement={window.innerWidth > 959 ? "top" : "left"}
+                classes={{ tooltip: classes.tooltip }}
+            >
             <Button
-                style = {{paddingTop:"0"}}
+                style = {{paddingTop:"0",paddingBottom: "0",width:"25px",height:"46px",backgroundColor: 'transparent'}}
                 color="transparent"
                 className={classes.navLink}
                 ref={anchorRef}
@@ -163,6 +168,7 @@ export default function HeaderLinks(props) {
             >
                 <ShopBadges items={cartItems} />
             </Button>
+            </Tooltip>
             <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                 {({ TransitionProps, placement }) => (
                     <Grow

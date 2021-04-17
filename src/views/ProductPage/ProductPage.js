@@ -32,7 +32,7 @@ export default function ProductPage(props) {
     <div>
       <Header
         color="transparent"
-        brand="Material Kit React"
+        brand="RED Wood Store"
         rightLinks={<HeaderLinks />}
         fixed
         changeColorOnScroll={{

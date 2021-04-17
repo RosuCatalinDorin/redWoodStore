@@ -39,12 +39,12 @@ export default function OrderPage(props) {
     return (
         <div>
             <Header
-                color="transparent"
-                brand="Material Kit React"
+                color="white"
+                brand="RED Wood Store"
                 rightLinks={<HeaderLinks />}
                 fixed
                 changeColorOnScroll={{
-                    height: 200,
+                    height: 100,
                     color: "white"
                 }}
                 {...rest}

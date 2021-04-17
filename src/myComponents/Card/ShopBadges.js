@@ -18,7 +18,7 @@ export default function ShopBadges(props) {
     return (
         <IconButton aria-label="cart">
             <StyledBadge badgeContent={totalItems} color="secondary">
-                <ShoppingCartIcon />
+                <ShoppingCartIcon color="primary" />
             </StyledBadge>
         </IconButton>
     );

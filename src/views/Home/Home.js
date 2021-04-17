@@ -38,7 +38,7 @@ export default function Components(props) {
                 fixed
                 color="transparent"
                 changeColorOnScroll={{
-                    height: 400,
+                    height: 100,
                     color: "black"
                 }}
                 {...rest}
@@ -48,14 +48,10 @@ export default function Components(props) {
                     <GridContainer>
                         <GridItem>
                             <div className={classes.brand}>
-                                <h1 className={classes.title}> <a>RED</a> Wood Store.</h1>
+                                <h1 className={classes.title}> <a>Totul</a> pentru tine!</h1>
                                 <h3 className={classes.subtitle}>
                                     Cele mai placute momente de relaxare sunt cele petrecute chiar in confortul casei tale.
                                 </h3>
-                                <Button className={classes.homeButton}
-                                        variant="contained"
-                                >
-                                    Default</Button>
                             </div>
                         </GridItem>
                     </GridContainer>

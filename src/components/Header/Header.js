@@ -20,11 +20,13 @@ import styles from "assets/jss/material-kit-react/components/headerStyle.js";
 import Avatar from '@material-ui/core/Avatar';
 
 import logo from '../../logoRedWood.png'
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(styles);
 
 export default function Header(props) {
   const classes = useStyles();
+  const history = useHistory();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   React.useEffect(() => {
     if (props.changeColorOnScroll) {
@@ -58,6 +60,9 @@ export default function Header(props) {
         .classList.remove(classes[changeColorOnScroll.color]);
     }
   };
+  const goToHome= () =>{
+    history.push("/");
+  }
   const { color, rightLinks, leftLinks, brand, fixed, absolute } = props;
   const appBarClasses = classNames({
     [classes.appBar]: true,
@@ -65,8 +70,13 @@ export default function Header(props) {
     [classes.absolute]: absolute,
     [classes.fixed]: fixed
   });
-  const brandComponent = <Button  startIcon={<Avatar src={logo} />}
-                                  className={classes.title}>{brand}</Button>;
+  const brandComponent = <Button
+      onClick={goToHome}
+      startIcon={<Avatar src={logo}/>}
+      className={classes.title}
+
+  >{brand}
+  </Button>;
   return (
     <AppBar className={appBarClasses}>
       <Toolbar className={classes.container}>
