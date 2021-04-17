@@ -4,6 +4,7 @@ import { createBrowserHistory } from "history";
 import { Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import "assets/scss/material-kit-react.scss?v=1.9.0";
+import Notiflix from "notiflix";
 
 // pages for this product
 import Components from "views/Components/Components.js";
@@ -14,7 +15,9 @@ import HomePage from "views/Home/Home.js";
 import OrderPage from "./views/Order/OrderPage";
 import store from "./store/store";
 // redux
-
+Notiflix.Notify.Init({
+  position:'right-bottom'
+});
 var hist = createBrowserHistory();
 
 ReactDOM.render(
