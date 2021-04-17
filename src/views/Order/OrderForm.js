@@ -26,6 +26,7 @@ export default function OrderForm(props) {
     const classes = useStyles();
     const [orase, setOrase] = useState([]);
     const [antoine, setAntoine] = useState(false);
+
     const [obj, setObj] = useState({});
     const [disableItemOrase, setDisableItemOrase] = useState(true);
     const dispatch = useDispatch();
@@ -56,25 +57,26 @@ export default function OrderForm(props) {
         })
         dispatch(addToOrder(order));
     }
+
     return (
         <div className={classes.container}>
             <GridContainer style={{display: "flex", justifyContent: "center"}}>
                 <GridItem md={10}>
                     <Grid container>
                         <Grid item xs={12} sm={4}>
-                            <TextField style={{padding: "5px", width: "100%"}} id="name" label="Nume"
+                            <TextField style={{padding: "5px", width: "100%"}} id="name" label="Nume" value ={order.name}
                                        onChange={handlerChange}/>
                         </Grid>
                         <Grid item xs={12} sm={4}>
-                            <TextField style={{padding: "5px", width: "100%"}} id="penume" label="Prenume"
+                            <TextField style={{padding: "5px", width: "100%"}} id="prenume" label="Prenume" value={order.prenume}
                                        onChange={handlerChange}/>
                         </Grid>
                         <Grid item xs={12} sm={4}>
-                            <TextField style={{padding: "5px", width: "100%"}} id="telefon" label="Telefon"
+                            <TextField style={{padding: "5px", width: "100%"}} id="telefon" label="Telefon" value={order.telefon}
                                        onChange={handlerChange}/>
                         </Grid>
                         <Grid item xs={12} sm={12}>
-                            <TextField style={{padding: "5px", width: "100%"}} id="email" label="Email"
+                            <TextField style={{padding: "5px", width: "100%"}} id="email" label="Email" value={order.email}
                                        onChange={handlerChange}/>
                         </Grid>
                     </Grid>
@@ -86,6 +88,7 @@ export default function OrderForm(props) {
                         renderInput={(params) => <TextField {...params} label="Selecteaza judetul" variant="outlined"/>}
                         //     getOptionSelected={(option) =>{getCity(option.auto)}}
                         onChange={(event, value) => getCity(value)}
+                        value={order.judet}
                     />
                     <Autocomplete
                         style={{marginTop: "20px"}}
@@ -95,30 +98,32 @@ export default function OrderForm(props) {
                         getOptionLabel={(option) => option.nume}
                         onChange={(event, value) => handlerChangeCity(value)}
                         renderInput={(params) => <TextField {...params} label="Selecteaza Localitate"
+                        value={order.orase}
                                                             variant="outlined"/>}
                     />
                     <Grid container>
                         <Grid item xs={12} sm={4}>
-                            <TextField style={{padding: "5px", width: "100%"}} id="strada" label="Strada"
+                            <TextField style={{padding: "5px", width: "100%"}} id="strada" label="Strada" value={order.strada}
                                        onChange={handlerChange}/>
                         </Grid>
                         <Grid item xs={12} sm={4}>
-                            <TextField style={{padding: "5px", width: "100%"}} id="numar" label="Numar"
+                            <TextField style={{padding: "5px", width: "100%"}} id="numar" label="Numar" value={order.numar}
                                        onChange={handlerChange}/>
                         </Grid>
                         <Grid item xs={12} sm={4}>
-                            <TextField style={{padding: "5px", width: "100%"}} id="codPostal" label="Cod postal"
+                            <TextField style={{padding: "5px", width: "100%"}} id="codPostal" label="Cod postal" value={order.codPostal}
                                        onChange={handlerChange}/>
                         </Grid>
                         <Grid item xs={12} sm={12}>
-                            <TextField style={{padding: "5px", width: "100%"}} id="deliveryDetails"
+                            <TextField style={{padding: "5px", width: "100%"}} id="deliveryDetails" value ={order.deliveryDetails}
                                        label="Detalii suplimentare pentru livrare"
                                        onChange={handlerChange}/>
                         </Grid>
 
                         <FormControlLabel
-                            control={<Checkbox checked={antoine} id="antoine" onChange={handleChangeCheckbox}
-                                               name="antoine"/>}
+                            control={<Checkbox checked={order.gdpr} id="antoine" onChange={handleChangeCheckbox}
+                                               name="antoine" />
+                            }
                             label="Imi exprima acordul pentru prelucrarea datelor cu caracter personal"
                         />
                     </Grid>

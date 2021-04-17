@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import SendIcon from '@material-ui/icons/Send';
 import OrderForm from "./OrderForm";
 import OrderDetails from "./OrderDetails";
+import OrderFinish from "./OrderFinish";
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -30,9 +31,9 @@ function getStepContent(stepIndex) {
         case 0:
             return <OrderDetails/>;
         case 1:
-            return <OrderForm/>;
+            return <OrderForm  />;
         case 2:
-            return 'This is the bit I really care about!';
+            return <OrderFinish/>;
         default:
             return 'Unknown stepIndex';
     }
@@ -41,6 +42,17 @@ function getStepContent(stepIndex) {
 export default function HorizontalLabelPositionBelowStepper() {
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
+    const [errorForm, setErrorForm] = React.useState({
+        errName:false,
+        errPrenume:false,
+        errTelefon:false,
+        errEmail:false,
+        errJudet:false,
+        errOras:false,
+        errStada:false,
+        errNumer:false,
+        errCodPostal:false,
+    });
     const steps = getSteps();
 
     const handleNext = () => {
