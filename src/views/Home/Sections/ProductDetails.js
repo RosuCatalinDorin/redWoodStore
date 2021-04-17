@@ -23,7 +23,7 @@ import MyCard from "../../../myComponents/Card/Card";
 import {detailsProduct} from "../../../actions/productAction";
 import {addToCart} from "../../../actions/cartAction";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-
+import Notiflix from "notiflix";
 //img
 
 
@@ -66,6 +66,8 @@ export default function ProductDetails(props) {
             }
         });
         dispatch(addToCart(product, qty));
+        Notiflix.Notify.Success('Produsul a fost adaugat in cosul de cumparaturi');
+
     }
     return (
         <div className={classes.sections}>
