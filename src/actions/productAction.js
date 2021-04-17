@@ -6,7 +6,6 @@ import {
     PRODUCT_LIST_REQUEST,
     PRODUCT_LIST_SUCCESS
 } from "../constants/productConstants";
-import axios from "axios";
 import firebase from "../firebase/FireBase";
 export const listProducts = () => async (dispatch) => {
     dispatch({

@@ -1,9 +1,5 @@
 import React, {useState} from "react";
-// nodejs library to set properties for components
-import PropTypes from "prop-types";
-// nodejs library that concatenates classes
-import classNames from "classnames";
-// @material-ui/core components
+
 import {makeStyles} from "@material-ui/core/styles";
 
 
@@ -33,15 +29,28 @@ export default function OrderForm(props) {
     const order = useSelector(state => state.order);
     console.log(order);
     const getCity = async (value) => {
-        const oraseJudet = await Axios.get('https://roloca.coldfuse.io/orase/' + value.auto);
-        setOrase(oraseJudet.data);
-        setDisableItemOrase(false);
-        order.judet = value.nume;
-        dispatch(addToOrder(order));
+        if(value !== null){
+            const oraseJudet = await Axios.get('https://roloca.coldfuse.io/orase/' + value.auto);
+            setOrase(oraseJudet.data);
+            setDisableItemOrase(false);
+            order.judet = value.nume;
+            dispatch(addToOrder(order));
+        } else {
+            setDisableItemOrase(true);
+            order.judet = "";
+            dispatch(addToOrder(order));
+        }
+
     }
     const handlerChangeCity = (value) =>{
-        order.localitate = value.nume
-        dispatch(addToOrder(order));
+        if(value !== null) {
+            order.localitate = value.nume;
+            dispatch(addToOrder(order));
+        } else {
+            order.localitate = "";
+            dispatch(addToOrder(order));
+        }
+
     }
     const handleChangeCheckbox = (event) => {
         setAntoine(event.target.checked);
