@@ -35,12 +35,12 @@ function getSteps() {
     return ['Finalizeaza comanda', 'Completeaza datele pentru livrare', 'Trimite comanda'];
 }
 
-function getStepContent(stepIndex) {
+function getStepContent(stepIndex,setDisableBut) {
     switch (stepIndex) {
         case 0:
             return <OrderDetails/>;
         case 1:
-            return <OrderForm/>;
+            return <OrderForm setDisableButon={setDisableBut}/>;
         case 2:
             return <OrderFinish/>;
         default:
@@ -68,6 +68,7 @@ export default function HorizontalLabelPositionBelowStepper() {
         errNumer: false,
         errCodPostal: false,
     });
+    const [disableButton,setDisableButton]= React.useState(false);
     const steps = getSteps();
     const history = useHistory();
     const handleNext = () => {
@@ -91,11 +92,17 @@ export default function HorizontalLabelPositionBelowStepper() {
 
         dispatch(saveOrderToDb(data));
     }
+    const setDisableBut = (action) => {
+        setDisableButton(action);
+    }
     if(msg ==="OK"){
         order.msg ="DONE"
         dispatch(removeAllProducts());
         dispatch(addToOrder(order))
         handleNext();
+    }
+    if(activeStep === 0 && disableButton === true){
+        setDisableButton(false)
     }
     return (
         <div className={classes.root}>
@@ -128,20 +135,19 @@ export default function HorizontalLabelPositionBelowStepper() {
                                 ) : (
                                     <div>
                                         <Typography
-                                            className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+                                            className={classes.instructions}>{getStepContent(activeStep,setDisableBut)}</Typography>
                                         <div style={{display: "flex", justifyContent: "center"}}>
                                             <Button
                                                 disabled={activeStep === 0}
                                                 onClick={handleBack}
                                                 className={classes.backButton}
-                                            >
-                                                Back
+                                            >Back
                                             </Button>
                                             {activeStep === steps.length - 1 ?
                                                 <Button variant="contained" color="primary" onClick={saveOrder}>
                                                     Finalizeaza comanda
                                                 </Button> :
-                                                <Button variant="contained" color="primary" onClick={handleNext}>
+                                                <Button disabled={disableButton} variant="contained" color="primary" onClick={handleNext}>
                                                     Next
                                                 </Button>}
                                         </div>
