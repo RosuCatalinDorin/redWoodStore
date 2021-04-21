@@ -23,8 +23,8 @@ export const saveOrderToDb = (order) => async (dispatch) => {
         debugger;
 
         firebase_con.collection("order").add(order).then(doc => {
-            console.log(doc);
-            debugger;
+        //    console.log(doc);
+      //      debugger;
             analytics.logEvent('place_order',{skill:23,name:"test"})
             const responseTodoItem = order;
             responseTodoItem.id = doc.id;

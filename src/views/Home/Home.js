@@ -48,7 +48,7 @@ export default function Components(props) {
                     <GridContainer>
                         <GridItem>
                             <div className={classes.brand}>
-                                <h1 className={classes.title}> <a>Totul</a> pentru tine!</h1>
+                                <h1 className={classes.title}> <a>Totul</a> pentru casa!</h1>
                                 <h3 className={classes.subtitle}>
                                     Cele mai placute momente de relaxare sunt cele petrecute chiar in confortul casei tale.
                                 </h3>

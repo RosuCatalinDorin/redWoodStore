@@ -53,10 +53,10 @@ export default function InteractiveList() {
     }
     console.log(cartItems);
     return (
-        <div className={classes.root}>
+        <box className={classes.root}>
             <Grid container  style ={{display:"flex",justifyContent:"center"}}>
                 <Grid item xs={12} md={10} >
-                    <div className={classes.demo}>
+                    <box className={classes.demo}>
                         <List dense={dense}>
                             {cartItems.map(row =>(
                                 <ListItem   key ={row.product.id}>
@@ -76,15 +76,15 @@ export default function InteractiveList() {
                                     </ListItemSecondaryAction>
                                 </ListItem>
                             ))}
-                            <div style={{marginLeft:'20px'}}>
+                            <box style={{marginLeft:'20px'}}>
                                 <h5>Cost produse: {totalPrice +" Lei"}</h5>
                                 <h5>Cost livrare si procesare: {shippingCost +" Lei"}</h5>
                                 <h4>Subtotal: {totalPrice+shippingCost +" Lei"}</h4>
-                            </div>
+                            </box>
                         </List>
-                    </div>
+                    </box>
                 </Grid>
             </Grid>
-        </div>
+        </box>
     );
 }

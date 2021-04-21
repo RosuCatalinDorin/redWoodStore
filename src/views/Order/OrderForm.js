@@ -20,31 +20,30 @@ const useStyles = makeStyles(styles);
 
 export default function OrderForm(props) {
     const {setDisableButon} = props;
-    debugger;
     const classes = useStyles();
     const [orase, setOrase] = useState([]);
-    const [antoine, setAntoine] = useState(true);
-    const [errorName, setErrorName] = useState(true);
-    const [errorPrenume, setErrorPrenume] = useState(true);
-    const [errorTelefon, setErrorTelefon] = useState(true);
-    const [errorEmail, setErrorEmail] = useState(true);
+    const [antoine, setAntoine] = useState(false);
+    const [errorName, setErrorName] = useState(false);
+    const [errorPrenume, setErrorPrenume] = useState(false);
+    const [errorTelefon, setErrorTelefon] = useState(false);
+    const [errorEmail, setErrorEmail] = useState(false);
     const [errorJudet, setErrorJudet] = useState(true);
     const [errorOras, setErrorOras] = useState(true);
-    const [errorStrada, setErrorStrada] = useState(true);
-    const [errorNumar, setErrorNumar] = useState(true);
-    const [errorCodPostal, setErrorCodPostal] = useState(true);
+    const [errorStrada, setErrorStrada] = useState(false);
+    const [errorNumar, setErrorNumar] = useState(false);
+    const [errorCodPostal, setErrorCodPostal] = useState(false);
 
     const [obj, setObj] = useState({});
-    const [disableItemOrase, setDisableItemOrase] = useState(true);
+    const [disableItemOrase, setDisableItemOrase] = useState(false);
     const dispatch = useDispatch();
     const order = useSelector(state => state.order);
     debugger
-    if(!errorName && !errorPrenume && !errorTelefon && !errorEmail && !errorJudet && !errorOras && !errorStrada && !errorNumar && !errorCodPostal)
+    if(!errorName && !errorPrenume && !errorTelefon && !errorEmail && !errorJudet && !errorOras && !errorStrada && !errorNumar && !errorCodPostal && order.gdpr)
         setDisableButon(false)
     else
         setDisableButon(true)
     const getCity = async (value) => {
-
+    debugger;
         if (value !== null) {
             validateImput(value, "judet")
             const oraseJudet = await Axios.get('https://roloca.coldfuse.io/orase/' + value.auto);
@@ -94,7 +93,6 @@ export default function OrderForm(props) {
     }
     const validateImput = (value, id) => {
         let code
-        debugger;
         value.length < 3 ?
             code = "setError" + id.charAt(0).toUpperCase() + id.slice(1) + "(true)" :
             code = "setError" + id.charAt(0).toUpperCase() + id.slice(1) + "(false)"
@@ -109,7 +107,7 @@ export default function OrderForm(props) {
         return true
     }
     return (
-        <div className={classes.container}>
+        <box className={classes.container}>
             <GridContainer style={{display: "flex", justifyContent: "center"}}>
                 <GridItem md={10}>
                     <Grid container style={{marginLeft: "10px", marginRight: "10px"}}>
@@ -191,7 +189,7 @@ export default function OrderForm(props) {
                     </Grid>
                 </GridItem>
             </GridContainer>
-        </div>
+        </box>
 
     );
 }
